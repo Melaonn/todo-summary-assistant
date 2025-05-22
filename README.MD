@@ -1,92 +1,109 @@
-📝 Todo Summary Assistant
+# 📝 Todo Summary Assistant
 
-------------------------------------------------------------------------------
-🔧 Backend Setup
+A full-stack application to manage your todos, summarize them using a Large Language Model (LLM), and send the summaries to a Slack channel.
 
-1.Navigate to the backend folder:
--cd backend
+---
 
-2.Install dependencies:
--npm install
+## 🔧 Backend Setup
 
-3.Create a .env file from .env.example:
--cp .env.example .env
+1. **Navigate to the backend folder**:  
+   `cd backend`
 
-4.Fill in your actual keys: also create database
-for supabase db url make sure to create a db table  in sql editor
-CREATE TABLE todos (
-  id SERIAL PRIMARY KEY,
-  text TEXT NOT NULL
-);
+2. **Install dependencies**:  
+   `npm install`
 
-SUPABASE_URL=yoursupabase_url
-SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-SUPABASE_DB_URL=your_db_url
+3. **Create a `.env` file**:  
+   `cp .env.example .env`
 
+4. **Set up Supabase**:  
+   - Create a database table in Supabase SQL Editor:
+     ```
+     CREATE TABLE todos (
+       id SERIAL PRIMARY KEY,
+       text TEXT NOT NULL
+     );
+     ```
+   - Fill in your actual Supabase credentials in the `.env` file:
+     ```
+     SUPABASE_URL=your_supabase_url  
+     SUPABASE_ANON_KEY=your_anon_key  
+     SUPABASE_SERVICE_ROLE_KEY=your_service_role_key  
+     SUPABASE_DB_URL=your_db_connection_url  
+     ```
 
-replace everything with your supabase 
+5. **Start the backend server**:  
+   `node index.js`
 
-5.Start the server:
-node index.js
+---
 
--------------------------------------------------------------------------------
-🖥️ Frontend Setup
+## 🖥️ Frontend Setup
 
-1.Navigate to the frontend folder:
--cd frontend
+1. **Navigate to the frontend folder**:  
+   `cd frontend`
 
-2.Install dependencies:
-npm install
+2. **Install dependencies**:  
+   `npm install`
 
-3.Start the React app:
-npm start
+3. **Start the React app**:  
+   `npm start`
 
-4.The app will open at: http://localhost:3000
+4. **Access the app**:  
+   Open `http://localhost:3000` in your browser
 
----------------------------------------------------------------------------------
-📤 Slack Setup
+---
 
-Go to: https://api.slack.com/messaging/webhooks
+## 📤 Slack Setup
 
-Click "Create a Slack App"
+1. Go to https://api.slack.com/messaging/webhooks  
+2. Click "Create a Slack App"  
+3. Select "Incoming Webhooks"  
+4. Enable Webhooks and create a Webhook URL for your desired channel  
+5. Copy the Webhook URL and add it to your `.env` file:  
+   `SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXX/YYY/ZZZ`
 
-Select "Incoming Webhooks"
+---
 
-Enable Webhooks and add a new Webhook URL to a channel
+## 🤖 LLM (Cohere) Setup
 
-Copy the generated Webhook URL
+1. Sign up at https://dashboard.cohere.com/  
+2. Go to API Keys and generate a new API key  
+3. Add the API key to your `.env` file:  
+   `COHERE_API_KEY=your_cohere_api_key_here`
 
-Paste it into your backend .env:
+---
 
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXX/YYY/ZZZ
+## 📌 Features
 
--------------------------------------------------------------------------------------
-🤖 LLM (Cohere) Setup
-Sign up at https://dashboard.cohere.com/
+- Add and manage todo items  
+- Summarize todos using Cohere LLM  
+- Send summaries to a Slack channel  
+- Supabase as backend database
 
-Go to your API Keys section and generate a new API key.
+---
 
-In your backend .env file, add:
+## 📂 Project Structure
 
-COHERE_API_KEY=your_cohere_api_key_here
+```
+root/
+├── backend/       # Node.js backend with Express and Supabase
+│   ├── index.js
+│   └── .env
+├── frontend/      # React frontend
+│   └── src/
+│       └── App.js
+└── README.md
+```
 
+---
 
--------------------------------------------------------------------------------------
+## 🚀 License
 
+This project is licensed under the MIT License.
 
+---
 
+## 🙌 Acknowledgements
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Cohere (https://cohere.com/)  
+- Supabase (https://supabase.io/)  
+- Slack (https://slack.com/)
